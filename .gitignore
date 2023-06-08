@@ -258,3 +258,6 @@ tools/*.jar
 
 # ide
 .vscode
+
+# test
+tests
