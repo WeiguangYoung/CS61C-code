@@ -47,31 +47,10 @@ void compute_nucleotide_occurrences(DNA_sequence *dna_seq)
     /* TODO: implement compute_nucleotide_occurances */
 
     int len = strlen(dna_seq->sequence);
-    dna_seq->A_count = 0;
-    dna_seq->C_count = 0;
-    dna_seq->G_count = 0;
-    dna_seq->T_count = 0;
-
-    for (int i = 0; i < len; i++)
-    {
-
-        if (dna_seq->sequence[i] == 'A')
-        {
-            dna_seq->A_count++;
-        }
-        else if (dna_seq->sequence[i] == 'C')
-        {
-            dna_seq->C_count++;
-        }
-        else if (dna_seq->sequence[i] == 'G')
-        {
-            dna_seq->G_count++;
-        }
-        else if (dna_seq->sequence[i] == 'T')
-        {
-            dna_seq->T_count++;
-        }
-    }
+    dna_seq->A_count = num_occurrences(dna_seq->sequence, 'A');
+    dna_seq->C_count = num_occurrences(dna_seq->sequence, 'C');
+    dna_seq->G_count = num_occurrences(dna_seq->sequence, 'G');
+    dna_seq->T_count = num_occurrences(dna_seq->sequence, 'T');
 
     return;
 }
