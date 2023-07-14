@@ -31,4 +31,4 @@ test_bit_ops.o: test_bit_ops.c bit_ops.h
 	$(CC) $(CFLAGS) -c test_bit_ops.c
 
 clean:
-	rm linked_list linked_list.o test_linked_list.o vector vector.o test_vector.o bit_ops bit_ops.o test_bit_ops.o
+	rm -f linked_list linked_list.o test_linked_list.o vector vector.o test_vector.o bit_ops bit_ops.o test_bit_ops.o

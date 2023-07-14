@@ -22,11 +22,6 @@ dest:
     .word   0
 
 .text
-fun:
-    addi t0, a0, 1
-    sub t1, x0, a0
-    mul a0, t0, t1
-    jr ra
 
 main:
     # BEGIN PROLOGUE
@@ -70,4 +65,11 @@ exit:
     lw ra, 16(sp)
     addi sp, sp, 20
     # END EPILOGUE
+	li a0, 10
+    ecall
+
+fun:
+    addi t0, a0, 1
+    sub t1, x0, a0
+    mul a0, t0, t1
     jr ra
