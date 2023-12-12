@@ -103,6 +103,32 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
     double global_sum = 0.0;
     // TODO: Implement this function
     // Do NOT use the `reduction` directive here!
+#pragma omp parallel
+    {
+        int tid = omp_get_thread_num();
+        int num_threads = omp_get_num_threads();
+
+        int chunk_size = arr_size / num_threads;
+        int start = tid * chunk_size;
+        int end = start + chunk_size;
+        double thread_sum = 0;
+
+        for (int i = start; i < end; i++)
+        {
+            thread_sum += x[i] * y[i];
+        }
+
+        if (tid == num_threads - 1 && end < arr_size)
+        {
+            for (int i = end; i < arr_size; i++)
+            {
+                thread_sum += x[i] * y[i];
+            }
+        }
+
+#pragma omp critical
+        global_sum += thread_sum;
+    }
     return global_sum;
 }
 
@@ -110,8 +136,14 @@ double dotp_manual_optimized(double *x, double *y, int arr_size)
 double dotp_reduction_optimized(double *x, double *y, int arr_size)
 {
     double global_sum = 0.0;
-    // TODO: Implement this function
-    // Please DO use the `reduction` directive here!
+// TODO: Implement this function
+// Please DO use the `reduction` directive here!
+#pragma omp parallel for reduction(+ \
+                                   : global_sum)
+    for (int i = 0; i < arr_size; i++)
+    {
+        global_sum += x[i] * y[i];
+    }
     return global_sum;
 }
 
