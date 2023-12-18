@@ -1,3 +1,6 @@
 [submodule "cs61c-su20"]
 	path = cs61c-su20
 	url = https://github.com/maksir98/cs61c.git
+[submodule "cs61c-sp22"]
+	path = cs61c-sp22
+	url = https://github.com/HangX-Ma/cs61c-sp22
